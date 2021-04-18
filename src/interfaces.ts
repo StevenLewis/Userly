@@ -18,7 +18,7 @@ export interface Location {
   street: string
   city: string,
   state: string,
-  postcode: number,
+  postcode: string,
   coordinates: Coordinates
   timezone: Timezone
 }
