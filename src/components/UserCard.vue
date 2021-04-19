@@ -1,7 +1,7 @@
 <template>
-  <li role="listitem" class="py-10 px-6 text-center rounded-lg shadow-md xl:px-10 xl:text-left" :class="[backgroundColor, textColor]">
-    <header class="flex items-center space-x-4 mb-4 border-b border-black border-opacity-10 pb-3">
-      <img class="h-20 w-20 rounded-full xl:w-30 xl:h-30" :src="user.picture.medium" :alt="`Profile photo of ${fullName}`" />
+  <li role="listitem" class="py-6 px-6 mb-4 rounded-lg shadow-md sm:h-full" :class="[backgroundColor, textColor]">
+    <header class="flex space-x-4 mb-4 sm:flex-col sm:items-center sm:text-center sm:pb-3 sm:border-b sm:border-black sm:border-opacity-10">
+      <img class="rounded-full h-10 w-10 sm:h-20 sm:w-20 sm:mb-2 xl:w-30 xl:h-30" :src="user.picture.medium" :alt="`Profile photo of ${fullName}`" />
       <div class="font-medium text-lg leading-6 space-y-1">
         <h3>{{ fullName }}</h3>
         <a :href="`mailto:${user.email}`" :alt="`Send an email to ${user.name.first}`" class="text-sm" :class="linkColor">{{ user.email }}</a>
@@ -17,8 +17,8 @@
       <div class="text-sm">
         <p>{{ streetName }}</p>
         <p>{{ user.location.city }}</p>
-        <p>{{ user.location.state }}</p>
-        <p>{{ user.location.postcode }}</p>
+        <p class="hidden sm:block">{{ user.location.state }}</p>
+        <p class="hidden sm:block">{{ user.location.postcode }}</p>
       </div>
     </footer>
   </li>

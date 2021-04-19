@@ -1,6 +1,6 @@
 <template>
-  <header class="flex items-center mb-5">
-    <p class="font-bold font-xl mr-5">Choose a card background colour:</p>
+  <header class="sm:flex items-center mb-5">
+    <p class="font-bold font-xl mr-5 mb-2 sm:mb-0">Choose a card background colour:</p>
     <div class="flex space-x-4">
         <button role="button"
                 @click.prevent="selectColor('white')"

@@ -1,6 +1,6 @@
 <template>
   <section>
-      <ul class="mb-10 sm:grid sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
+      <ul class="mb-10 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8">
         <UserCard v-for="user in users" :key="user.email" :user="user" class="lc-user" :color="color" />
       </ul>
 
