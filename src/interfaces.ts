@@ -14,8 +14,13 @@ export interface Timezone {
   discription: string
 }
 
+export interface Street {
+  number: string
+  name: string
+}
+
 export interface Location {
-  street: string
+  street: Street
   city: string,
   state: string,
   postcode: string,
@@ -23,8 +28,14 @@ export interface Location {
   timezone: Timezone
 }
 
+export interface Name {
+  title: string
+  first: string
+  last: string
+}
+
 export interface User {
-  name: string
+  name: Name
   email: string
   phone: string
   picture: Picture
