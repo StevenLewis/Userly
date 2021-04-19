@@ -1,10 +1,10 @@
 <template>
-  <li role="listitem" class="py-10 px-6 bg-gray-800 text-center text-white rounded-lg xl:px-10 xl:text-left">
-    <header class="flex items-center space-x-4 mb-4 border-b border-gray-700 pb-3">
+  <li role="listitem" class="py-10 px-6 text-center rounded-lg shadow-md xl:px-10 xl:text-left" :class="[backgroundColor, textColor]">
+    <header class="flex items-center space-x-4 mb-4 border-b border-black border-opacity-10 pb-3">
       <img class="h-20 w-20 rounded-full xl:w-30 xl:h-30" :src="user.picture.medium" :alt="`Profile photo of ${fullName}`" />
       <div class="font-medium text-lg leading-6 space-y-1">
         <h3>{{ fullName }}</h3>
-        <a :href="`mailto:${user.email}`" :alt="`Send an email to ${user.name.first}`" class="text-sm text-yellow-400">{{ user.email }}</a>
+        <a :href="`mailto:${user.email}`" :alt="`Send an email to ${user.name.first}`" class="text-sm" :class="linkColor">{{ user.email }}</a>
         <p class="text-sm">{{ user.phone }}</p>
       </div>
     </header>
@@ -27,10 +27,12 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { User } from '@/interfaces'
+import { Color } from '@/types'
 
 @Component
 export default class UserCard extends Vue {
   @Prop() readonly user!: User
+  @Prop() readonly color!: Color
 
   get fullName (): string {
     return this.user.name.first + ' ' + this.user.name.last
@@ -38,6 +40,42 @@ export default class UserCard extends Vue {
 
   get streetName (): string {
     return this.user.location.street.number + ' ' + this.user.location.street.name
+  }
+
+  get backgroundColor (): string {
+    const backgrounds = {
+      white: 'bg-white',
+      gray: 'bg-gray-800',
+      yellow: 'bg-yellow-200',
+      green: 'bg-green-200',
+      blue: 'bg-blue-600'
+    }
+
+    return backgrounds[this.color]
+  }
+
+  get textColor (): string {
+    const text = {
+      white: 'text-gray-800',
+      gray: 'text-white',
+      yellow: 'text-gray-800',
+      green: 'text-gray-800',
+      blue: 'text-white'
+    }
+
+    return text[this.color]
+  }
+
+  get linkColor (): string {
+    const link = {
+      white: 'text-indigo-500',
+      gray: 'text-yellow-300',
+      yellow: 'text-indigo-800',
+      green: 'text-indigo-600',
+      blue: 'text-yellow-300'
+    }
+
+    return link[this.color]
   }
 }
 </script>

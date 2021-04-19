@@ -1,7 +1,7 @@
 <template>
   <section>
-      <ul class="mb-4 sm:grid sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
-        <UserCard v-for="user in users" :key="user.email" :user="user" class="lc-user" />
+      <ul class="mb-10 sm:grid sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
+        <UserCard v-for="user in users" :key="user.email" :user="user" class="lc-user" :color="color" />
       </ul>
 
       <nav class="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0">
@@ -21,7 +21,7 @@
           <a v-if="hasPreviousPage" @click.prevent="selectPage(page - 1)" :alt="`Go to page ${page - 1}`" href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium">
             {{ page - 1 }}
           </a>
-          <a @click.prevent="selectPage(page)" :alt="`Go to page ${page}`" href="#" class="lc-page border-yellow-500 text-yellow-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium" aria-current="page">
+          <a @click.prevent="selectPage(page)" :alt="`Go to page ${page}`" href="#" class="lc-page border-indigo-500 text-indigo-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium" aria-current="page">
             {{ page }}
           </a>
           <a v-if="hasNextPage" @click.prevent="selectPage(page + 1)" :alt="`Go to page ${page + 1}`" href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium">
@@ -45,10 +45,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 import { User } from '@/interfaces'
 import api from '@/api'
 import UserCard from '@/components/UserCard.vue'
+import { Color } from '@/types'
 
 @Component({
   components: {
@@ -57,6 +58,8 @@ import UserCard from '@/components/UserCard.vue'
 })
 
 export default class UserCards extends Vue {
+  @Prop() readonly color!: Color
+
   private users: Array<User> = []
   private page = 1
   private resultsPerPage = 3
