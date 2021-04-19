@@ -25,7 +25,7 @@ import Cookies from 'js-cookie'
 })
 
 export default class App extends Vue {
-  private color: Color = Cookies.get('color') ? Cookies.get('color') : Color.White
+  private color: Color | string | undefined = Cookies.get('color') ? Cookies.get('color') : Color.White
 
   updateColor (color: Color): void {
     Cookies.set('color', color)

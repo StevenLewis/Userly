@@ -41,3 +41,19 @@ export interface User {
   picture: Picture
   location: Location
 }
+
+export interface RandomUserInfo {
+  page: number
+  results: number
+  seed: string
+  version: string
+}
+
+export interface RandomUserData {
+  info: RandomUserInfo
+  results: Array<User>
+}
+
+export interface AxiosResponse {
+  data: RandomUserData
+}
