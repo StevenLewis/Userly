@@ -1,7 +1,12 @@
 <template>
   <li role="listitem" class="py-6 px-6 mb-4 rounded-lg shadow-md sm:h-full" :class="[backgroundColor, textColor]">
     <header class="flex space-x-4 mb-4 sm:flex-col sm:items-center sm:text-center sm:pb-3 sm:border-b sm:border-black sm:border-opacity-10">
-      <img class="rounded-full h-10 w-10 sm:h-20 sm:w-20 sm:mb-2 xl:w-30 xl:h-30" :src="user.picture.medium" :alt="`Profile photo of ${fullName}`" />
+      <img :srcset="`${user.picture.thumbnail} 48w, ${user.picture.large} 128w`"
+           sizes="(max-width: 640px) 48px, 128w"
+           class="rounded-full h-10 w-10 sm:h-20 sm:w-20 sm:mb-2 xl:w-30 xl:h-30"
+           :src="user.picture.large"
+           :alt="`Profile photo of ${fullName}`"
+      />
       <div class="font-medium text-lg leading-6 space-y-1">
         <h3>{{ fullName }}</h3>
         <a :href="`mailto:${user.email}`" :alt="`Send an email to ${user.name.first}`" class="text-sm" :class="linkColor">{{ user.email }}</a>
@@ -68,7 +73,7 @@ export default class UserCard extends Vue {
 
   get linkColor (): string {
     const link = {
-      white: 'text-indigo-500',
+      white: 'text-indigo-600',
       gray: 'text-yellow-300',
       yellow: 'text-indigo-800',
       green: 'text-indigo-600',

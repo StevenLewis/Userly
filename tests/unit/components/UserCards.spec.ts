@@ -118,7 +118,7 @@ describe('UserCards', () => {
     expect(wrapper.find('.lc-page').text()).toBe('4')
   })
 
-  test('It will not load the next page when at maximum', async () => {
+  test('It will not show the next button when at maximum', async () => {
     const wrapper = shallowMount(UserCards, {
       data () {
         return {
@@ -128,12 +128,11 @@ describe('UserCards', () => {
     })
 
     await flushPromises()
-    await wrapper.find('.lc-next').trigger('click')
 
-    expect(wrapper.find('.lc-page').text()).toBe('33')
+    expect(wrapper.find('.lc-next').exists()).toBe(false)
   })
 
-  test('It will not load the previous page when at one', async () => {
+  test('It will not show the previous button when at page one', async () => {
     const wrapper = shallowMount(UserCards, {
       data () {
         return {
@@ -143,8 +142,7 @@ describe('UserCards', () => {
     })
 
     await flushPromises()
-    await wrapper.find('.lc-previous').trigger('click')
 
-    expect(wrapper.find('.lc-page').text()).toBe('1')
+    expect(wrapper.find('.lc-previous').exists()).toBe(false)
   })
 })
