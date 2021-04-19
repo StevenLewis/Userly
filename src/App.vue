@@ -15,6 +15,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import ColorPicker from '@/components/ColorPicker.vue'
 import UserCards from './components/UserCards.vue'
 import { Color } from '@/./types'
+import Cookies from 'js-cookie'
 
 @Component({
   components: {
@@ -24,9 +25,10 @@ import { Color } from '@/./types'
 })
 
 export default class App extends Vue {
-  private color: Color = Color.White
+  private color: Color = Cookies.get('color') ? Cookies.get('color') : Color.White
 
   updateColor (color: Color): void {
+    Cookies.set('color', color)
     this.color = color
   }
 }
